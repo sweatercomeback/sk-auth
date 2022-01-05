@@ -187,11 +187,11 @@ export class Auth {
   }
 
   get: RequestHandler = async (request) => {
-    const { path } = request;
+    const { url } = request;
 
-    if (path === this.getPath("csrf")) {
+    if (url.pathname === this.getPath("csrf")) {
       return { body: "1234" }; // TODO: Generate real token
-    } else if (path === this.getPath("session")) {
+    } else if (url.pathname === this.getPath("session")) {
       const session = await this.getSession(request);
       return {
         body: {
