@@ -136,9 +136,9 @@ export class Auth {
   }
 
   async handleEndpoint(request: ServerRequest): Promise<EndpointOutput> {
-    const { path, headers, method, host } = request;
+    const { url, path, headers, method, host } = request;
 
-    if (path === this.getPath("signout")) {
+    if (url.pathname === this.getPath("signout")) {
       const token = this.setToken(headers, {});
       const jwt = this.signToken(token);
 
